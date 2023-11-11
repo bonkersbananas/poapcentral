@@ -77,7 +77,7 @@ bun-install:
 
 .PHONY: run-frontend
 run-frontend:
-	@runcmd bun run --cwd frontend/ astro dev
+	bun run --cwd frontend/ astro dev
 
 .PHONY: git-submodule-update
 git-submodule-update:
