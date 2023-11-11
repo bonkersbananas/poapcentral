@@ -1,0 +1,26 @@
+# .NET Core
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.user
+*.vscode
+*.vs/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# macOS
+.DS_Store
+
+# Other
+*.log
+*.swp
+Thumbs.db
