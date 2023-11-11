@@ -6,6 +6,33 @@ Web app 👉 <https://poapcentral.xyz>
 
 A web app to distribute POAPs to eligible users. Eligibility could be determined by checking what other POAPs an account may have collected – Proof of POAP.
 
+## Local Development
+
+### Installation of Runtimes (macOS)
+
+```bash
+# Frontend: bun
+brew tap oven-sh/bun
+brew install bun
+
+# Backend: dotnet-sdk
+brew install --cask dotnet-sdk
+```
+
+### Launching the Application
+
+#### Frontend
+
+```bash
+(cd frontend/ ; bunx --bun astro dev)
+```
+
+#### Backend
+
+```bash
+dotnet ...
+```
+
 ## Project Plan (High Level)
 
 ### Step 1 – Basics of the Service
