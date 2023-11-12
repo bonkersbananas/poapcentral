@@ -11,11 +11,11 @@ A web app to distribute POAPs to eligible users. Eligibility could be determined
 ### Installation of Runtimes (macOS)
 
 ```bash
-# Frontend: bun
+# frontend -> bun
 brew tap oven-sh/bun
 brew install bun
 
-# Backend: dotnet-sdk
+# backend -> dotnet-sdk
 brew install --cask dotnet-sdk
 ```
 
@@ -24,7 +24,11 @@ brew install --cask dotnet-sdk
 #### Frontend
 
 ```bash
-(cd frontend/ ; bunx --bun astro dev)
+# install dependencies
+bun install --cwd frontend/
+
+# run application
+bun run --cwd frontend/ astro dev
 ```
 
 #### Backend

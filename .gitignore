@@ -13,9 +13,27 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# Foundry
+cache/
+out/
+
+# Hardhat files
+cache_hardhat/
+artifacts/
+
+# Hardhat plugin files
+typechain-types/
+
+# Hardhat temporary
+.openzeppelin/
+broadcast/
+
 # Visual Studio Code
 .vscode/
 *.code-workspace
+
+# Dotenv file
+.env
 
 # macOS
 .DS_Store
@@ -24,3 +42,8 @@ yarn-error.log
 *.log
 *.swp
 Thumbs.db
+.dccache
+.dcignore
+*.code-workspace
+.make.functions.sh
+typescript/
