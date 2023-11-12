@@ -91,3 +91,22 @@ graph LR
 4. Backend asks Alchemy about POAPs for the account that signed the message.
 5. Backend fetches a link from the datastore and marks it as distributed and provides the link to the frontend.
 6. Frontend shows the link (or redirects to POAP app for user to claim).
+
+```mermaid
+sequenceDiagram
+    participant User as User
+    participant Frontend as Frontend UI
+    participant Backend as Backend
+    participant Datastore as Datastore
+    participant Alchemy as Alchemy
+
+    User ->> Frontend: Connects to frontend UI
+    Frontend ->> Alchemy: Asks about POAPs for connected account
+    Frontend ->> User: Requests signature from the account
+    User ->> Frontend: Provides signature
+    Frontend ->> Backend: Sends signature
+    Backend ->> Alchemy: Asks about POAPs for signed account
+    Backend ->> Datastore: Fetches a link and marks it as distributed
+    Backend ->> Frontend: Provides the link
+    Frontend ->> User: Shows the link or redirects to POAP app
+```
