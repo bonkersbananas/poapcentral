@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  backend:
+    container_name: poapcentral-backend
+    build: backend
+    pull_policy: build
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/backend/api
+        target: /backend/api
+    ports:
+      - 5196:5196
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "curl",
+    #       "-A",
+    #       "healthcheck",
+    #       "-f",
+    #       "http://localhost:5196/health"
+    #     ]
+    #   interval: 1s
+    #   timeout: 5s
+    #   retries: 3
+    #   start_period: 10s
+  frontend:
+    container_name: poapcentral-frontend
+    build: frontend
+    pull_policy: build
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/frontend/public
+        target: /frontend/public
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/frontend/src
+        target: /frontend/src
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/frontend/astro.config.mjs
+        target: /frontend/astro.config.mjs
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/frontend/bun.lockb
+        target: /frontend/bun.lockb
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/frontend/package.json
+        target: /frontend/package.json
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/frontend/tsconfig.json
+        target: /frontend/tsconfig.json
+    ports:
+      - 4321:4321
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "curl",
+    #       "-A",
+    #       "healthcheck",
+    #       "-f",
+    #       "http://localhost:4321/health"
+    #     ]
+    #   interval: 1s
+    #   timeout: 5s
+    #   retries: 3
+    #   start_period: 10s

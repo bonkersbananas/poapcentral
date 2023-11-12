@@ -39,8 +39,8 @@ default:
 #		  \e[90m$$ \e[0;97;1mmake \e[0;92;1mclean         \e[0;90m➔ \e[32;3mremove build artifacts \e[0m\n \
 #	""" | sed -e 's/^[ \t	]\{1,\}\(.\)/  \1/'
 	printf """\e[37musage:\e[0m\n \
-		  \e[90m$$ \e[0;97;1mmake \e[0;92;1minstall       \e[0;90m➔ \e[32;3minstall dependencies \e[0m\n \
-		  \e[90m$$ \e[0;97;1mmake \e[0;92;1mrun           \e[0;90m➔ \e[32;3mlaunch app \e[0m\n \
+		  \e[90m$$ \e[0;97;1mmake \e[0;92;1mrun           \e[0;90m➔ \e[32;3mlaunch app (docker-compose up) \e[0m\n \
+		  \e[90m$$ \e[0;97;1mmake \e[0;92;1mstop          \e[0;90m➔ \e[32;3mstop all containers (docker-compose down) \e[0m\n \
 	""" | sed -e 's/^[ \t	]\{1,\}\(.\)/  \1/'
 
 .PHONY: forge-build
@@ -79,6 +79,18 @@ bun-install:
 run-frontend:
 	bun run --cwd frontend/ astro dev
 
+.PHONY: run-backend
+run-backend:
+	dotnet run --project backend/api/
+
+.PHONY: docker-compose-up
+docker-compose-up:
+	docker-compose up
+
+.PHONY: docker-compose-down
+docker-compose-down:
+	docker-compose down
+
 .PHONY: git-submodule-update
 git-submodule-update:
 	@runcmd git submodule update --init --recursive
@@ -107,4 +119,10 @@ dotenv-setup:
 # install: git-submodule-update npm-install dotenv-setup
 install: bun-install
 
-run: run-frontend
+run: docker-compose-up
+up: run
+start: run
+
+stop: docker-compose-down
+down: stop
+halt: stop
