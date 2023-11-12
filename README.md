@@ -34,7 +34,8 @@ bun run --cwd frontend/ astro dev
 #### Backend
 
 ```bash
-dotnet ...
+# run application
+dotnet run --project backend/api/
 ```
 
 ## Project Plan (High Level)
