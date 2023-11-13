@@ -7,10 +7,9 @@ app.MapGet("/poap", () =>
 {
     var poap = new Poap
     {
-        Url = "https://example.com/poap",
-        Message = "Success!",
         Id = 555,
-        IsDistributed = true
+        Url = "https://example.com/poap",
+        Status = Status.SUCCESS
     };
     return Results.Ok(poap);
 });
