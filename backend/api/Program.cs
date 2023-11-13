@@ -1,7 +1,13 @@
 using backend.api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
+
+app.MapHealthChecks("/healthz");
+
+app.MapGet("/", () => "Welcome to POAP Central");
 
 app.MapGet("/poap", () =>
 {
@@ -13,5 +19,8 @@ app.MapGet("/poap", () =>
     };
     return Results.Ok(poap);
 });
+
+
+
 
 app.Run();
