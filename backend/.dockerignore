@@ -1,0 +1,13 @@
+**/.DS_Store
+**/.git/
+**/.vscode/
+**/.tmp/
+**/.vscode
+**/.env
+**/.env.*
+**/*.swp
+**/*.swo
+**/*.log
+**/*.orig
+**/Dockerfile*
+/README.md

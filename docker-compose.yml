@@ -12,6 +12,8 @@ services:
         target: /backend/api
     ports:
       - 5196:5196
+    networks:
+      - poapcentral
     # healthcheck:
     #   test:
     #     [
@@ -52,6 +54,8 @@ services:
         target: /frontend/tsconfig.json
     ports:
       - 4321:4321
+    networks:
+      - poapcentral
     # healthcheck:
     #   test:
     #     [
@@ -66,3 +70,31 @@ services:
     #   timeout: 5s
     #   retries: 3
     #   start_period: 10s
+  db:
+    container_name: poapcentral-db
+    image: postgres:16.1
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/vol/db
+        target: /var/lib/postgresql/data
+        bind:
+          create_host_path: true
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=poapcentral
+      - POSTGRES_DB=postgres
+    networks:
+      - poapcentral
+#   db-admin:
+#     container_name: poapcentral-db-admin
+#     image: dpage/pgadmin4
+#     restart: unless-stopped
+#     ports:
+#       - 8080:8080
+networks:
+  poapcentral:
+    name: poapcentral
+    driver: bridge

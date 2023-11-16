@@ -5,13 +5,15 @@ obj/
 *.exe
 *.pdb
 *.user
-*.vscode
 *.vs/
 
-# Node.js
+# Node.js / Bun / JS / TypeScript
 node_modules/
 npm-debug.log
 yarn-error.log
+typescript/
+.eslintcache
+.npmrc
 
 # Foundry
 cache/
@@ -29,21 +31,30 @@ typechain-types/
 broadcast/
 
 # Visual Studio Code
-.vscode/
+*.vscode/*.json
+!.vscode/launch.json
+!.vscode/extensions.json
 *.code-workspace
 
 # Dotenv file
 .env
+.env.production
 
 # macOS
 .DS_Store
 
+# Volumes
+/vol
+
 # Other
 *.log
 *.swp
+*.orig
 Thumbs.db
 .dccache
 .dcignore
 *.code-workspace
 .make.functions.sh
-typescript/
+.cache-loader
+.idea/*
+junit.xml
