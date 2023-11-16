@@ -39,6 +39,7 @@ default:
 #		  \e[90m$$ \e[0;97;1mmake \e[0;92;1mclean         \e[0;90m➔ \e[32;3mremove build artifacts \e[0m\n \
 #	""" | sed -e 's/^[ \t	]\{1,\}\(.\)/  \1/'
 	printf """\e[37musage:\e[0m\n \
+		  \e[90m$$ \e[0;97;1mmake \e[0;92;1minstall       \e[0;90m➔ \e[32;3minstall development dependencies \e[0m\n \
 		  \e[90m$$ \e[0;97;1mmake \e[0;92;1mrun           \e[0;90m➔ \e[32;3mlaunch app (docker-compose up) \e[0m\n \
 		  \e[90m$$ \e[0;97;1mmake \e[0;92;1mstop          \e[0;90m➔ \e[32;3mstop all containers (docker-compose down) \e[0m\n \
 	""" | sed -e 's/^[ \t	]\{1,\}\(.\)/  \1/'
