@@ -43,6 +43,10 @@ dotnet watch --project backend/api/
 
 ## Project Plan (High Level)
 
+### Step 0.5 - Event info
+
+- Frontend fetch event info from backend
+
 ### Step 1 – Basics of the Service
 
 - Prove who the owner of the account is by signing a message (what should be signed?)
