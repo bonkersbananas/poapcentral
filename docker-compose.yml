@@ -52,6 +52,11 @@ services:
       - type: bind
         source: ${LOCAL_WORKSPACE_FOLDER:-.}/frontend/tsconfig.json
         target: /frontend/tsconfig.json
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-.}/frontend/.env
+        target: /frontend/.env
+        bind:
+          create_host_path: true
     ports:
       - 4321:4321
     networks:
@@ -86,6 +91,15 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=poapcentral
       - POSTGRES_DB=postgres
+    healthcheck:
+      test: [
+        "CMD-SHELL", "pg_isready",
+        "-U", "${POSTGRES_USER:-postgres}",
+        "-d", "${POSTGRES_DB:-${POSTGRES_USER:-postgres}}"
+      ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - poapcentral
 #   db-admin:

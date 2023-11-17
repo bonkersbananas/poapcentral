@@ -1,4 +1,4 @@
-# .NET Core
+# .NET Core / Backend
 bin/
 obj/
 *.dll
@@ -7,7 +7,7 @@ obj/
 *.user
 *.vs/
 
-# Node.js / Bun / JS / TypeScript
+# Node.js / Bun / Astro / Frontend / JS / TypeScript
 node_modules/
 npm-debug.log
 yarn-error.log
@@ -16,8 +16,8 @@ typescript/
 .npmrc
 
 # Foundry
-cache/
-out/
+contracts/cache/
+contracts/out/
 
 # Hardhat files
 cache_hardhat/
@@ -38,7 +38,8 @@ broadcast/
 
 # Dotenv file
 .env
-.env.production
+.env.*
+!.env.example
 
 # macOS
 .DS_Store
@@ -53,7 +54,6 @@ broadcast/
 Thumbs.db
 .dccache
 .dcignore
-*.code-workspace
 .make.functions.sh
 .cache-loader
 .idea/*

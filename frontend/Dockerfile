@@ -6,8 +6,8 @@ COPY public /frontend/public
 COPY src /frontend/src
 
 RUN bun install
-RUN bun run astro telemetry disable
 
-ENV HOST=0.0.0.0
+# ENV HOST=0.0.0.0
 ENV PORT=4321
+ENV ASTRO_TELEMETRY_DISABLED=1
 CMD ["bun", "run", "astro", "dev"]

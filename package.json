@@ -1,0 +1,9 @@
+{
+    "private": true,
+    "config": {
+        "workspace": "frontend"
+    },
+    "workspaces": [
+        "frontend"
+    ]
+}

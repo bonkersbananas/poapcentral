@@ -27,6 +27,9 @@ brew install --cask dotnet-sdk
 # install dependencies
 bun install --cwd frontend/
 
+# disable telemetry (optional)
+bun run astro telemetry disable
+
 # run application
 bun run --cwd frontend/ astro dev
 ```
