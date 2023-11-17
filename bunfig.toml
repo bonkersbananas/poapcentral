@@ -1,0 +1,8 @@
+telemetry = false
+
+[install]
+auto = "disable"
+dryRun = true
+
+[install.lockfile]
+save = false

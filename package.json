@@ -1,9 +1,9 @@
 {
     "private": true,
-    "config": {
-        "workspace": "frontend"
+    "scripts": {
+        "install": "bun install --cwd frontend/",
+        "postinstall": "rm -rf node_modules"
     },
-    "workspaces": [
-        "frontend"
-    ]
+    "devDependencies": {
+    }
 }
