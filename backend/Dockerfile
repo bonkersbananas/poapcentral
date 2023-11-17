@@ -3,7 +3,7 @@ WORKDIR /backend
 
 COPY api /backend/api
 
-HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --start-interval=1s --retries=5 \
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
     CMD curl --fail http://localhost:5196/healthz || exit
 
 CMD ["dotnet", "watch", "--project", "api/"]
