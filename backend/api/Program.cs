@@ -1,11 +1,21 @@
 using backend.api.Models;
+using backend.api.DataAccess;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHealthChecks();
 
+
 var app = builder.Build();
 
 app.MapHealthChecks("/healthz");
+
+app.MapGet("/testdb", async (PoapCentralDbContext db) =>
+{
+    var canConnect = await db.Database.CanConnectAsync();
+    return Results.Ok(new { CanConnect = canConnect });
+});
 
 app.MapGet("/", () => "Welcome to POAP Central");
 

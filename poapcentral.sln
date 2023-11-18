@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{328F3589-F112-4B2A-977E-3B286C83BA07}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoapCentralApi", "backend\api\PoapCentralApi.csproj", "{44D0CEFB-C8AA-406D-9C0A-A257D0F98D06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44D0CEFB-C8AA-406D-9C0A-A257D0F98D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44D0CEFB-C8AA-406D-9C0A-A257D0F98D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44D0CEFB-C8AA-406D-9C0A-A257D0F98D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44D0CEFB-C8AA-406D-9C0A-A257D0F98D06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{44D0CEFB-C8AA-406D-9C0A-A257D0F98D06} = {328F3589-F112-4B2A-977E-3B286C83BA07}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C059E32-3AE7-4D17-A357-746519C98EDA}
+	EndGlobalSection
+EndGlobal
