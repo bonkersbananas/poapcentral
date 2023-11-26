@@ -11,7 +11,7 @@ services:
         source: ${LOCAL_WORKSPACE_FOLDER:-.}/backend/api
         target: /backend/api
     ports:
-      - 5196:5196
+      - 127.0.0.1:5196:5196
     networks:
       - poapcentral
     # healthcheck:
@@ -58,7 +58,7 @@ services:
         bind:
           create_host_path: true
     ports:
-      - 4321:4321
+      - 127.0.0.1:4321:4321
     networks:
       - poapcentral
     # healthcheck:
@@ -91,6 +91,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=poapcentral
       - POSTGRES_DB=postgres
+      - TZ=UTC
+      - PGTZ=UTC
     healthcheck:
       test: [
         "CMD-SHELL",
