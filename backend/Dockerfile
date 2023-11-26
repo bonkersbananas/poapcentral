@@ -1,4 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0-bookworm-slim
+ENV TZ=UTC
+ENV ENV="/etc/profile"
+RUN echo "UTC" > /etc/timezone
 WORKDIR /backend
 
 COPY api /backend/api
