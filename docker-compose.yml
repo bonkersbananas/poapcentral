@@ -16,20 +16,6 @@ services:
       - poapcentral
     environment:
     - TERM=xterm-256color
-    # healthcheck:
-    #   test:
-    #     [
-    #       "CMD",
-    #       "curl",
-    #       "-A",
-    #       "healthcheck",
-    #       "-f",
-    #       "http://localhost:5196/health"
-    #     ]
-    #   interval: 1s
-    #   timeout: 5s
-    #   retries: 3
-    #   start_period: 10s
   frontend:
     container_name: poapcentral-frontend
     build: frontend

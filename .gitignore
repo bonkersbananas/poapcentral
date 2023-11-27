@@ -6,7 +6,7 @@ obj/
 *.pdb
 *.user
 *.vs/
-/poapcentral.sln
+/*.sln
 
 # Node.js / Bun / Astro / Frontend / JS / TypeScript
 node_modules/
