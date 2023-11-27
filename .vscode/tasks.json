@@ -21,7 +21,7 @@
                 "reveal": "always",
                 "panel": "dedicated",
                 "close": false,
-                "focus": true,
+                "focus": true
             },
             "detail": "Launch Docker Containers",
             "isBackground": false,
