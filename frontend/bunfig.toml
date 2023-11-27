@@ -2,3 +2,4 @@ telemetry = false
 
 [install]
 frozenLockfile = true
+auto = "disable"

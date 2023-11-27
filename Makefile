@@ -86,7 +86,7 @@ run-backend:
 
 .PHONY: docker-compose-up
 docker-compose-up:
-	docker-compose up
+	docker-compose up || (exit_code=$$?; [ $$exit_code -eq 130 ] || exit $$exit_code) ; docker-compose down
 
 .PHONY: docker-compose-down
 docker-compose-down:

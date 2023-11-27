@@ -2,19 +2,36 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "./node_modules/.bin/astro dev",
-            "name": "Development server",
+            "name": "Launch Containers (docker-compose up)",
+            "type": "docker",
             "request": "launch",
-            "type": "node-terminal"
+            "platform": "node",
+            "internalConsoleOptions": "neverOpen",
+            "presentation": {
+                "hidden": false,
+                "group": "",
+                "order": 1,
+            },
+            "preLaunchTask": "docker-compose up"
         },
         {
-            "type": "bun",
+            "name": "Docker .NET Attach (Preview)",
+            "type": "docker",
             "request": "attach",
-            "name": "Attach to Bun",
-
-            // The URL of the WebSocket inspector to attach to.
-            // This value can be retrieved by using `bun --inspect`.
-            "url": "ws://localhost:6499/",
+            "platform": "netCore",
+            "containerName": "poapcentral-backend",
+            "processId": "1",
+            "preLaunchTask": "docker-compose up",
+            "sourceFileMap": {
+                "/backend": "${workspaceFolder}/backend"
+            }
         }
+
+        // {
+        //     "type": "bun",
+        //     "request": "attach",
+        //     "name": "Attach to Bun",
+        //     "url": "ws://localhost:9229/oftfxo1yy3",
+        // }
     ]
 }

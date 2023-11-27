@@ -34,6 +34,7 @@ broadcast/
 *.vscode/*.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/tasks.json
 *.code-workspace
 
 # Dotenv file

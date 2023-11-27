@@ -10,7 +10,8 @@ COPY src /frontend/src
 
 RUN bun install
 
-ENV HOST=0.0.0.0
-ENV PORT=4325
+ENV PORT=4321
 ENV ASTRO_TELEMETRY_DISABLED=1
-CMD ["bun", "run", "astro", "dev", "--host", "$HOST", "--port", "$PORT"]
+
+CMD ["bun", "run", "astro", "dev", "--host", "--port", "$PORT"]
+# CMD ["bun", "--inspect=ws://0.0.0.0:9229/oftfxo1yy3", "node_modules/astro/astro.js", "dev", "--host", "--port", "$PORT"]
