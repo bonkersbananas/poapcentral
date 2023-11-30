@@ -16,6 +16,8 @@ services:
       - poapcentral
     environment:
     - TERM=xterm-256color
+    - DB_CONNECTIONSTRING=Host=db;Port=5432;Database=postgres;Username=postgres;Password=poapcentral;
+
   frontend:
     container_name: poapcentral-frontend
     build: frontend
