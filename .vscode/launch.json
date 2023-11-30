@@ -18,10 +18,15 @@
         */
         {
             "name": "Docker .NET Attach (Preview)",
-            "type": "docker",
+            "type": "coreclr",
             "request": "attach",
-            "platform": "netCore",
-            "containerName": "poapcentral-backend",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": ["exec", "-i", "poapcentral-backend"],
+                "debuggerPath": "/remote_debugger/vsdbg",
+                "pipeCwd": "${workspaceFolder}",
+                "quoteArgs": false
+            },
             "processId": "1",
             // "preLaunchTask": "docker-compose up",
             "sourceFileMap": {
