@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 // var connection = Configuration.GetConnectionString("DefaultConnection");
-var connection = "Host=poapcentral;Port=5432;Database=poapcentral-db;Username=postgres;Password=poapcentral;";
+var connection = "Host=db;Port=5432;Database=postgres;Username=postgres;Password=poapcentral;";
 builder.Services.AddDbContext<PoapCentralDbContext>(options =>
            options.UseNpgsql(connection));
 

@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+        /*
         {
             "name": "Launch Containers (docker-compose up)",
             "type": "docker",
@@ -14,6 +15,7 @@
             },
             "preLaunchTask": "docker-compose up"
         },
+        */
         {
             "name": "Docker .NET Attach (Preview)",
             "type": "docker",
@@ -21,9 +23,16 @@
             "platform": "netCore",
             "containerName": "poapcentral-backend",
             "processId": "1",
-            "preLaunchTask": "docker-compose up",
+            // "preLaunchTask": "docker-compose up",
             "sourceFileMap": {
-                "/backend": "${workspaceFolder}/backend"
+                "/backend/api": "${workspaceFolder}/backend/api"
+            },
+            "justMyCode": true,
+            "requireExactSource": false,
+            "symbolOptions": {
+                "searchPaths": ["./symbols"],
+                "searchMicrosoftSymbolServer": true,
+                "searchNuGetOrgSymbolServer": true
             }
         }
 
