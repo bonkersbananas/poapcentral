@@ -2,16 +2,24 @@ using backend.api.Models;
 using backend.api.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
+using Npgsql;
+using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+var Configuration = builder.Configuration;
+// var connection = Configuration.GetConnectionString("DefaultConnection");
+var connection = "Host=poapcentral;Port=5432;Database=poapcentral-db;Username=postgres;Password=poapcentral;";
+builder.Services.AddDbContext<PoapCentralDbContext>(options =>
+           options.UseNpgsql(connection));
+
 builder.Services.AddHealthChecks();
-
-
 var app = builder.Build();
 
 app.MapHealthChecks("/healthz");
 
-app.MapGet("/testdb", async (PoapCentralDbContext db) =>
+app.MapGet("/testdb", async ([FromServices] PoapCentralDbContext db) =>
 {
     var canConnect = await db.Database.CanConnectAsync();
     return Results.Ok(new { CanConnect = canConnect });
