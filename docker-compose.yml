@@ -11,23 +11,11 @@ services:
         source: ${LOCAL_WORKSPACE_FOLDER:-.}/backend/api
         target: /backend/api
     ports:
-      - 5196:5196
+      - 127.0.0.1:5196:5196
     networks:
       - poapcentral
-    # healthcheck:
-    #   test:
-    #     [
-    #       "CMD",
-    #       "curl",
-    #       "-A",
-    #       "healthcheck",
-    #       "-f",
-    #       "http://localhost:5196/health"
-    #     ]
-    #   interval: 1s
-    #   timeout: 5s
-    #   retries: 3
-    #   start_period: 10s
+    environment:
+    - TERM=xterm-256color
   frontend:
     container_name: poapcentral-frontend
     build: frontend
@@ -58,9 +46,13 @@ services:
         bind:
           create_host_path: true
     ports:
-      - 4321:4321
+      - 127.0.0.1:4321:4321
+      - 127.0.0.1:6499:6499  # bun --inspect
+      - 127.0.0.1:9229:9229  # node --inspect
     networks:
       - poapcentral
+    environment:
+    - TERM=xterm-256color
     # healthcheck:
     #   test:
     #     [
@@ -91,6 +83,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=poapcentral
       - POSTGRES_DB=postgres
+      - TZ=UTC
+      - PGTZ=UTC
+      - TERM=xterm-256color
     healthcheck:
       test: [
         "CMD-SHELL",

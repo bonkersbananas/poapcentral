@@ -1,9 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "install": "bun install --cwd frontend/",
+        "install": "(cd frontend/ ; ${npm_execpath:-$(which bun || which npm)} install)",
         "postinstall": "rm -rf node_modules"
-    },
-    "devDependencies": {
     }
 }
