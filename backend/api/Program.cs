@@ -10,16 +10,24 @@ using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 var connection = Environment.GetEnvironmentVariable("DB_CONNECTIONSTRING");
+
 builder.Services.AddDbContext<PoapCentralDbContext>(options =>
            options.UseNpgsql(connection));
+
 builder.Services.AddHealthChecks();
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<PoapCentralDbContext>();
+    context.Init().Wait();
+}
 app.MapHealthChecks("/healthz");
 
-app.MapGet("/testdb", async ([FromServices] PoapCentralDbContext db) =>
+app.MapGet("/testdb", async (PoapCentralDbContext context) =>
 {
-    var canConnect = await db.Database.CanConnectAsync();
+    var canConnect = await context.Database.CanConnectAsync();
     return Results.Ok(new { CanConnect = canConnect });
 });
 
