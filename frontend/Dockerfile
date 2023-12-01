@@ -19,7 +19,7 @@ ENV PORT=4321
 ENV ASTRO_TELEMETRY_DISABLED=1
 
 HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
-    CMD curl --fail http://localhost:$PORT/healthz || exit
+    CMD curl --fail --connect-timeout 1 --max-time 3 http://localhost:$PORT/healthz || exit
 
 CMD ["bun", "run", "astro", "dev", "--host", "--port", "$PORT"]
 # CMD ["bun", "--inspect=ws://0.0.0.0:9229/oftfxo1yy3", "node_modules/astro/astro.js", "dev", "--host", "--port", "$PORT"]

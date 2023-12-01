@@ -4,8 +4,9 @@ ENV ENV="/etc/profile"
 RUN echo "UTC" > /etc/timezone
 
 RUN apt update && \
-    apt install unzip && \
-    curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l /remote_debugger
+    apt install -y unzip procps && \
+    curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l /remote_debugger && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN dotnet tool install --tool-path /usr/local/bin/ dotnet-symbol
 
@@ -18,7 +19,7 @@ COPY api /backend/api
 RUN dotnet build --debug --no-restore --output build api/
 
 HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
-    CMD curl --fail http://localhost:5196/healthz || exit
+    CMD curl --fail --connect-timeout 1 --max-time 3 http://localhost:5196/healthz || exit
 
 ENV ASPNETCORE_URLS=http://0.0.0.0:5196
 ENV ASPNETCORE_ENVIRONMENT=Development

@@ -2,7 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "docker-compose up",
+            "label": "debug [init]",
+            "icon": {
+                "id": "debug-all",
+                "color": "terminal.ansiYellow"
+            },
+            "hide": true,
             "type": "process",
             "command": "docker-compose",
             "args": [
@@ -11,21 +16,110 @@
                 "--project-name",
                 "poapcentral",
                 "up",
-                "--force-recreate"
+                "--wait"
             ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "close": true,
+                "focus": true
+            },
+            "detail": "Debug Docker Containers",
+            "isBackground": false,
+            "problemMatcher": []
+        },
+        {
+            "label": "services [launch]",
+            "type": "shell",
+            "icon": {
+                "id": "run-all",
+                "color": "terminal.ansiGreen"
+            },
+            "command": "trap",
+            "args": [
+                "'docker-compose --file ${workspaceFolder}/docker-compose.yml --project-name poapcentral up --force-recreate'",
+                "EXIT"
+            ],
+            "runOptions": {
+                "instanceLimit": 2
+            },
             "group": {
-                "kind": "build",
+                "kind": "none",
                 "isDefault": true
             },
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated",
-                "close": false,
+                "panel": "shared",
+                "group": "docker",
+                "close": true,
                 "focus": true
             },
-            "detail": "Launch Docker Containers",
+            "detail": "Launch (or Restart) Services",
+            "isBackground": false,
+            "problemMatcher": [],
+        },
+        {
+            "label": "services [log]",
+            "icon": {
+                "id": "run-all",
+                "color": "terminal.ansiBlue"
+            },
+            "type": "shell",
+            "command": "trap",
+            "args": [
+                "'[ $(docker-compose ps --status running --status restarting | wc -l | xargs -n1) -ne 1 ] || docker-compose --file ${workspaceFolder}/docker-compose.yml --project-name poapcentral up --detach && docker-compose logs -f'",
+                "EXIT"
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "docker-logs",
+                "close": true,
+                "focus": false
+            },
+            "detail": "Attach to Running Services",
             "isBackground": false,
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "services [stop]",
+            "icon": {
+                "id": "close-all",
+                "color": "terminal.ansiRed"
+            },
+            "type": "process",
+            "command": "docker-compose",
+            "args": [
+                "--file",
+                "${workspaceFolder}/docker-compose.yml",
+                "--project-name",
+                "poapcentral",
+                "down",
+            ],
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "docker",
+                "close": true,
+                "focus": true
+            },
+            "detail": "Stop Service Containers",
+            "isBackground": false,
+            "problemMatcher": []
+        },
     ]
 }

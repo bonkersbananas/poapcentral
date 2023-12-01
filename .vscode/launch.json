@@ -1,23 +1,8 @@
 {
     "version": "0.2.0",
     "configurations": [
-        /*
         {
-            "name": "Launch Containers (docker-compose up)",
-            "type": "docker",
-            "request": "launch",
-            "platform": "node",
-            "internalConsoleOptions": "neverOpen",
-            "presentation": {
-                "hidden": false,
-                "group": "",
-                "order": 1,
-            },
-            "preLaunchTask": "docker-compose up"
-        },
-        */
-        {
-            "name": "Docker .NET Attach (Preview)",
+            "name": "Debug .NET",
             "type": "coreclr",
             "request": "attach",
             "pipeTransport": {
@@ -28,16 +13,25 @@
                 "quoteArgs": false
             },
             "processId": "1",
-            // "preLaunchTask": "docker-compose up",
+            "suppressMultipleSessionWarning": false,
+            "preLaunchTask": "debug [init]",
+            "postDebugTask": "services [log]",
             "sourceFileMap": {
                 "/backend/api": "${workspaceFolder}/backend/api"
             },
             "justMyCode": true,
             "requireExactSource": false,
             "symbolOptions": {
-                "searchPaths": ["./symbols"],
                 "searchMicrosoftSymbolServer": true,
                 "searchNuGetOrgSymbolServer": true
+            },
+            "logging": {
+                "moduleLoad": false,
+            },
+            "presentation": {
+                "group": "debug",
+                "hidden": false,
+                "order": 0
             }
         }
 
