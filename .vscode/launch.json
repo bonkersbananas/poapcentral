@@ -15,7 +15,6 @@
             "processId": "1",
             "suppressMultipleSessionWarning": false,
             "preLaunchTask": "debug [init]",
-            "postDebugTask": "services [log]",
             "sourceFileMap": {
                 "/backend/api": "${workspaceFolder}/backend/api"
             },
@@ -31,7 +30,8 @@
             "presentation": {
                 "group": "debug",
                 "hidden": false,
-                "order": 0
+                "order": 0,
+                "focus": false,
             }
         }
 

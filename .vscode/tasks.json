@@ -44,7 +44,7 @@
                 "instanceLimit": 2
             },
             "group": {
-                "kind": "none",
+                "kind": "build",
                 "isDefault": true
             },
             "presentation": {
@@ -56,7 +56,7 @@
             },
             "detail": "Launch (or Restart) Services",
             "isBackground": false,
-            "problemMatcher": [],
+            "problemMatcher": []
         },
         {
             "label": "services [log]",
@@ -82,7 +82,7 @@
                 "panel": "shared",
                 "group": "docker-logs",
                 "close": true,
-                "focus": false
+                "focus": true
             },
             "detail": "Attach to Running Services",
             "isBackground": false,
@@ -101,13 +101,13 @@
                 "${workspaceFolder}/docker-compose.yml",
                 "--project-name",
                 "poapcentral",
-                "down",
+                "down"
             ],
             "runOptions": {
                 "instanceLimit": 1
             },
             "group": {
-                "kind": "build",
+                "kind": "none",
                 "isDefault": false
             },
             "presentation": {
@@ -120,6 +120,6 @@
             "detail": "Stop Service Containers",
             "isBackground": false,
             "problemMatcher": []
-        },
+        }
     ]
 }
