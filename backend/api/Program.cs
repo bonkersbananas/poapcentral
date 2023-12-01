@@ -65,4 +65,43 @@ app.MapGet("/poap", () =>
     return Results.Ok(poap);
 });
 
+//  Example body:
+//{
+//     "Id": "123",
+//     "Url": "https://example.com/poap",
+//     "Status": "SUCCESS"
+// }
+app.MapPost("/poap", async (Poap poap, PoapCentralDbContext context) =>
+{
+    var validationResult = ValidatePoap(poap);
+    if (validationResult != Results.Ok())
+    {
+        return validationResult;
+    }
+    context.Poaps.Add(poap);
+    await context.SaveChangesAsync();
+
+    return Results.Created($"/poap/{poap.Id}", poap);
+});
+
 app.Run();
+
+IResult ValidatePoap(Poap poap)
+{
+    if (string.IsNullOrWhiteSpace(poap.Id))
+    {
+        return Results.BadRequest("Id is required.");
+    }
+
+    if (string.IsNullOrWhiteSpace(poap.Url) || !Uri.IsWellFormedUriString(poap.Url, UriKind.Absolute))
+    {
+        return Results.BadRequest("A valid Url is required.");
+    }
+
+    if (string.IsNullOrWhiteSpace(poap.Status))
+    {
+        return Results.BadRequest("Status is required.");
+    }
+
+    return Results.Ok();
+}

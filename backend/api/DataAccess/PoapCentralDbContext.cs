@@ -60,7 +60,7 @@ namespace backend.api.DataAccess
 
                 if (!tableExists)
                 {
-                    using (var createTableCommand = new NpgsqlCommand($"CREATE TABLE {databaseName} (id varchar(255) NOT NULL, url varchar(255) NOT NULL, status varchar(255) NOT NULL, PRIMARY KEY (id))", connection))
+                    using (var createTableCommand = new NpgsqlCommand($"CREATE TABLE {tableName} (id varchar(255) NOT NULL, url varchar(255) NOT NULL, status varchar(255) NOT NULL, PRIMARY KEY (id))", connection))
                     {
                         await createTableCommand.ExecuteNonQueryAsync();
                         Console.WriteLine($"Created table {tableName}");
