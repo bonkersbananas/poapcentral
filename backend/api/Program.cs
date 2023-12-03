@@ -54,22 +54,23 @@ app.MapGet("/event/{id}", (string id) =>
     return Results.Ok(poapEvent);
 });
 
-app.MapGet("/poap", () =>
+app.MapGet("/poap/{id}", async (string id, PoapCentralDbContext context) =>
 {
-    var poap = new Poap
+    var result = await context.Poaps.FindAsync(id);
+
+    if (result == null)
     {
-        Id = "5B5",
-        Url = "https://example.com/poap",
-        Status = Status.SUCCESS
-    };
-    return Results.Ok(poap);
+        return Results.NotFound();
+    }
+
+    return Results.Ok(result);
 });
 
 //  Example body:
 //{
-//     "Id": "123",
-//     "Url": "https://example.com/poap",
-//     "Status": "SUCCESS"
+//     "id": "123",
+//     "url": "https://example.com/poap",
+//     "status": "SUCCESS"
 // }
 app.MapPost("/poap", async (Poap poap, PoapCentralDbContext context) =>
 {

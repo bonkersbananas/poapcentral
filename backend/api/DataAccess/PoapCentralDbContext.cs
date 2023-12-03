@@ -16,12 +16,17 @@ namespace backend.api.DataAccess
         public async Task Init()
         {
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTIONSTRING");
+            var originalBuilder = new NpgsqlConnectionStringBuilder(connectionString);
             var builder = new NpgsqlConnectionStringBuilder(connectionString) { Database = "postgres" };
 
             using var connection = new NpgsqlConnection(builder.ConnectionString);
             await connection.OpenAsync();
 
-            var databaseName = "testdatabasename";
+            string? databaseName = originalBuilder.Database;
+            if (databaseName == null)
+            {
+                throw new Exception("Database name not found in connection string");
+            }
             bool databaseExists;
             using (var command = new NpgsqlCommand($"SELECT 1 FROM pg_database WHERE datname = '{databaseName}'", connection))
             {
@@ -60,7 +65,7 @@ namespace backend.api.DataAccess
 
                 if (!tableExists)
                 {
-                    using (var createTableCommand = new NpgsqlCommand($"CREATE TABLE {tableName} (id varchar(255) NOT NULL, url varchar(255) NOT NULL, status varchar(255) NOT NULL, PRIMARY KEY (id))", connection))
+                    using (var createTableCommand = new NpgsqlCommand($"CREATE TABLE {tableName} (id varchar(255) NOT NULL, url varchar(255) NULL DEFAULT NULL, status varchar(255) NOT NULL, image_url varchar(255) NULL DEFAULT NULL, title varchar(255) NULL DEFAULT NULL, description varchar(255) NULL DEFAULT NULL, PRIMARY KEY (id))", connection))
                     {
                         await createTableCommand.ExecuteNonQueryAsync();
                         Console.WriteLine($"Created table {tableName}");
